@@ -1,12 +1,19 @@
 package com.publicis.recipe.controller;
 
 import com.publicis.recipe.entity.RecipeEntity;
+import com.publicis.recipe.exception.ResourceNotFoundException;
 import com.publicis.recipe.service.RecipeService;
 import com.publicis.recipe.service.RecipeServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+/**
+ * Main entry point for the Recipe Spring Boot application.
+ * Enables caching and bootstraps the application context.
+ */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
@@ -28,7 +35,7 @@ public class RecipeController {
     }
 
     @GetMapping("/{id}")
-    public RecipeEntity getRecipeById(@PathVariable String id) {
+    public RecipeEntity getRecipeById(@PathVariable String id) throws ResourceNotFoundException {
         return recipeService.getRecipeById(id);
     }
 

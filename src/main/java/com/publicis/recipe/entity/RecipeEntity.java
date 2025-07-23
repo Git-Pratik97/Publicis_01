@@ -2,6 +2,8 @@ package com.publicis.recipe.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;
@@ -15,6 +17,8 @@ public class RecipeEntity {
     @JsonProperty("id")
     private String id;
 
+    @NotBlank(message = "Recipe name is required")
+    @Size(max = 100, message = "Recipe name must be less than 100 characters")
     private String name;
 
     @ElementCollection
@@ -27,6 +31,8 @@ public class RecipeEntity {
     private int cookTimeMinutes;
     private int servings;
     private String difficulty;
+
+    @NotBlank(message = "Cuisine is required")
     private String cuisine;
     private int caloriesPerServing;
 
