@@ -1,0 +1,11 @@
+# Use OpenJDK 17 as base image
+FROM eclipse-temurin:17-jre-alpine
+
+WORKDIR /app
+
+# Copy built jar from target folder
+COPY target/recipe-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
